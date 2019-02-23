@@ -26,7 +26,7 @@
 	<!--操作-->
 	<script type="text/html" id="blockListBar">
 		<a class="layui-btn layui-btn-xs" lay-event="edit">设置</a>
-		<a class="layui-btn layui-btn-xs layui-btn-danger layui-btn-disabled" lay-event="del" disabled="disabled">删除</a>
+		<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
 	</script>
 </form>
 <script type="text/javascript" src='<c:url value="/resources/layui/layui.js"></c:url>'></script>
