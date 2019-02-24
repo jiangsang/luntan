@@ -200,11 +200,11 @@ public class CommonController {
 		User userinfo=(User)session.getAttribute("user");
 		//用户未登录跳转到登录页面
 		if(userinfo==null) {
-			return "login";
+			return "redirect:login";
 		}
 		//用户不是管理员则跳转到首页
 		else if(userinfo.getHonor()<=2) {
-			return "index";
+			return "redirect:index";
 		}
 		return "admin_index";
 	}

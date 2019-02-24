@@ -91,7 +91,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		for(User user:userlist) {
 			String passwordByMd5 = MD5Cripy.MD5(password);
-			if(user.getPassword().equals(passwordByMd5)) {
+			if(user.getPassword().equals(passwordByMd5)&&user.getStatus()==1) {
 				json.put("code",1);
 				json.put("msg","登录成功！");
 				session.setAttribute("user", user);
@@ -101,9 +101,14 @@ public class UserController {
 					System.out.println(sign);
 				}
 			}
-			else {session.setAttribute("msg", "账号或密码输入错误！");
+			else if(user.getStatus()==0)
+			{
 					json.put("code",0);
-					json.put("msg","账号或密码输入错误！请重试！");
+					json.put("msg","该账号已禁用！请换一个账号！");
+			}
+			else {
+				json.put("code",0);
+				json.put("msg","账号或密码输入错误，请重试！");
 			}
 		}			
 			return json;
@@ -257,6 +262,7 @@ public class UserController {
 			user.setPhone(cellphone);
 			user.setGradeValue(0);
 			user.setHonor(1);
+			user.setStatus(1);
 			user.setName(username);
 			user.setHeadurl(defaultheadlist.get(defaultheadid).getUrl());
 			user.setPassword(MD5Cripy.MD5(password));

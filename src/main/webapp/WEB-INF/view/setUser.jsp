@@ -63,8 +63,8 @@
 				<select name="userhonor" class="userhonor" lay-filter="userhonor">
 				    <option value="1">普通用户</option>
 				    <option value="2">版主</option>
-				    <option value="3">管理员</option>
 				    <c:if test="${user.getHonor()==4 }">
+				    	<option value="3">管理员</option>
 				    	<option value="4">超级管理员</option>
 				    </c:if>
 				</select>

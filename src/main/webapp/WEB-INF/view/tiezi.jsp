@@ -64,11 +64,11 @@
           <!-- <span class="layui-badge" style="background-color: #5FB878;">已结</span> -->
           
           <div class="fly-admin-box" data-id="123">
-          	<c:if test="${user.getHonor()==2 || userThread.getUserId()==user.getUserid()}" >
+          	<c:if test="${user.getHonor()>2 || userThread.getUserId()==user.getUserid()}" >
             	<span class="layui-btn layui-btn-xs jie-admin" id="delthread">删除</span>
             <!-- <span class="layui-btn layui-btn-xs jie-admin" type="set" field="stick" rank="0" style="background-color:#ccc;">取消置顶</span> -->
 			</c:if>
-			<c:if test="${user.getHonor()==2&&userThread.getStatus()!=1&&userThread.getStatus()!=3}">
+			<c:if test="${user.getHonor()>2&&userThread.getStatus()!=1&&userThread.getStatus()!=3}">
             	<span class="layui-btn layui-btn-xs jie-admin" id="setstatus" field="status" rank="1">加精</span> 
             <!-- <span class="layui-btn layui-btn-xs jie-admin" type="set" field="status" rank="0" style="background-color:#ccc;">取消加精</span> -->
 			</c:if>         
@@ -129,10 +129,10 @@
                 <c:if test="${ item.getUserId()==userThread.getUserId()}">
                 	<span>(楼主)</span>
                 </c:if>
-                <c:if test="${ item.getHonor()==2}">
+                <c:if test="${ item.getHonor()>2}">
                 	<span style="color:#5FB878">(管理员)</span>
                 </c:if>
-                <c:if test="${ item.getHonor()==0}">
+                <c:if test="${ item.getStatus()==0}">
                 	<span style="color:#999">（该号已被禁用）</span>
                 </c:if>
                 <!--
@@ -165,7 +165,7 @@
 	                       <a class="replyid" style="display:none">${ item.getId()}</a>
 	                    </span>
                     </c:if>
-                    <c:if test="${user.getHonor()==2 || item.getUserId()==user.getUserid()}" >
+                    <c:if test="${user.getHonor()>2 || item.getUserId()==user.getUserid()}" >
 			            <div class="jieda-admin">            
 			                <!--  <span type="edit">编辑</span>-->
 			                <span id="delcommit" >
