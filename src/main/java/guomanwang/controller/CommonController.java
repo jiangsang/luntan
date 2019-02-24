@@ -134,8 +134,8 @@ public class CommonController {
 	@Scheduled(cron = "0 30 22 ? * *")//每天22点30启动自动抓取动漫资讯任务
 	@RequestMapping("/reflash")
 	public String reflash() throws IOException, InterruptedException{
-		String stringArray[] = {"python /usr/local/scary_wawayu.py","python /usr/local/scary_xi1.py","python /usr/local/scary_rocen.py","python /usr/local/scary_chaoshen.py", 
-		"python /usr/local/scary_cgyear.py","python /usr/local/scary_haoliners.py","python /usr/local/scary_gamersky.py","python /usr/local/scary_qsmy.py"};
+		String stringArray[] = {"python3 /usr/local/scary_wawayu.py","python3 /usr/local/scary_xi1.py","python3 /usr/local/scary_rocen.py","python3 /usr/local/scary_chaoshen.py", 
+		"python3 /usr/local/scary_cgyear.py","python3 /usr/local/scary_haoliners.py","python3 /usr/local/scary_gamersky.py","python3 /usr/local/scary_qsmy.py"};
 		for(int i=0;i<stringArray.length;i++) {
 			System.out.println("开始执行"+stringArray[i]);
 			TimerTask.autoscarynews(stringArray[i]);

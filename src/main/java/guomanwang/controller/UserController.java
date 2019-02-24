@@ -35,6 +35,7 @@ import guomanwang.domain.UserThread;
 import guomanwang.domain.Commit;
 import guomanwang.domain.Defaulthead;
 import guomanwang.domain.FriendRelation;
+import guomanwang.domain.MD5Cripy;
 import guomanwang.domain.Message;
 import guomanwang.domain.Sign;
 import guomanwang.domain.Thread;
@@ -89,7 +90,8 @@ public class UserController {
 		List<User> userlist=this.userService.isLogin(telnumber);
 		HttpSession session = request.getSession();
 		for(User user:userlist) {
-			if(user.getPassword().equals(password)) {
+			String passwordByMd5 = MD5Cripy.MD5(password);
+			if(user.getPassword().equals(passwordByMd5)) {
 				json.put("code",1);
 				json.put("msg","登录成功！");
 				session.setAttribute("user", user);
@@ -257,7 +259,7 @@ public class UserController {
 			user.setHonor(1);
 			user.setName(username);
 			user.setHeadurl(defaultheadlist.get(defaultheadid).getUrl());
-			user.setPassword(password);
+			user.setPassword(MD5Cripy.MD5(password));
 			int change_row=this.userService.register(user);
 			if(change_row>0) {
 				json.put("code",1);
@@ -285,7 +287,7 @@ public class UserController {
 		User user=new User();
 		if(vali.equals(request.getSession().getAttribute("code"))) {
 			user.setPhone(cellphone);
-			user.setPassword(password);
+			user.setPassword(MD5Cripy.MD5(password));
 			int change_row=this.userService.resetpassbyphone(user);
 			if(change_row>0) {
 				json.put("code",1);
@@ -312,8 +314,10 @@ public class UserController {
 		System.out.println("经过密码更改方法");
 		User userinfo=(User)session.getAttribute("user");
 		User user=new User();
-		if(password.equals(userinfo.getPassword())) {
-			user.setPassword(newpassword);
+		String pass=MD5Cripy.MD5(password);
+		String newpass=MD5Cripy.MD5(newpassword);
+		if(pass.equals(newpass)) {
+			user.setPassword(newpass);
 			user.setPhone(userinfo.getPhone());
 			user.setGradeValue(userinfo.getGradeValue());
 			user.setHonor(userinfo.getHonor());
