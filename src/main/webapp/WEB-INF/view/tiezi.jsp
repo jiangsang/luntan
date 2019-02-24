@@ -101,14 +101,12 @@
           </div>
         </div>
         <div class="detail-body photos">
-          <pre>
-            ${ userThread.getContent()}
-          </pre>
-      	 	 图片区域
-      	  <hr>
-          <p>
-            <img src="../../res/images/fly.jpg" alt="Fly社区">
-          </p>
+        	<div class="layui-card">
+			  <div class="layui-card-body">
+			   ${ userThread.getContent()}
+			  </div>
+			</div>
+            
         </div>
       </div>
       <div class="fly-panel detail-box" id="flyReply">

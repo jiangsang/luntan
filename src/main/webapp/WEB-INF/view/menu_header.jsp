@@ -86,13 +86,13 @@
     </ul>
   </div>
   <script src='<c:url value="/resources/layui/layui.js"></c:url>'></script>
-<script>
-	$(".fly-nav-avatar").hover(function(){
-		$(".layui-nav-child").fadeIn();	
-	});
-	$(".fly-nav-user").mouseleave(function(){
-		$(".layui-nav-child").fadeOut();	
-	});
-</script>
+	<script>
+		$(".fly-nav-avatar").hover(function(){
+			$(".layui-nav-child").fadeIn();	
+		});
+		$(".fly-nav-user").mouseleave(function(){
+			$(".layui-nav-child").fadeOut();	
+		});
+	</script>
 </body>
 </html>
