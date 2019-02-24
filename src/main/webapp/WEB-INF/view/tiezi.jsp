@@ -103,7 +103,7 @@
         <div class="detail-body photos">
         	<div class="layui-card">
 			  <div class="layui-card-body">
-			   ${ userThread.getContent()}
+			   <pre>${ userThread.getContent()}</pre>
 			  </div>
 			</div>
             
@@ -150,7 +150,7 @@
               <!-- <i class="iconfont icon-caina" title="最佳答案"></i> -->
             </div>
             <div class="detail-body jieda-body photos">
-               <p>${item.getContent()}</p>
+               <pre>${item.getContent()}</pre>
             </div>
                <div class="jieda-reply">
                	   <span <c:if test="${item.getIsliked()==1}">class="jieda-zan zanok"</c:if>

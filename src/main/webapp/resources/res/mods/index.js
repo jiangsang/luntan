@@ -120,8 +120,8 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
             layer.closeAll('tips');
           });
           $('#LAY-editface li').on('click', function(){
-            var title = $(this).attr('title') + ' ';
-            layui.focusInsert(editor[0], 'face' + title);
+            var url = $(this).find("img").attr('src');
+            layui.focusInsert(editor[0], '<img src="'+url+'">');
           });
         }
         ,picture: function(editor){ //插入图片
@@ -478,8 +478,6 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
     })
   });
 
-  //新消息通知
-  fly.newmsg();
 
   //发送激活邮件
   fly.activate = function(email){
