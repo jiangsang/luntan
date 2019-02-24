@@ -12,6 +12,9 @@
   <meta name="description" content="纵横国漫网致力于为广大国漫爱好者提供一个交流分享平台">
 <link href='<c:url value="/resources/layui/css/layui.css"></c:url>' rel="stylesheet" />
 <link href='<c:url value="/resources/css/global.css"></c:url>' rel="stylesheet" />
+<style type="text/css">
+	.photos img{width:50%;}
+</style>
 </head>
 <body>
 <jsp:include page="menu_header.jsp"/>
@@ -98,9 +101,9 @@
           </div>
         </div>
         <div class="detail-body photos">
-          <p>
+          <pre>
             ${ userThread.getContent()}
-          </p>
+          </pre>
       	 	 图片区域
       	  <hr>
           <p>
@@ -132,7 +135,7 @@
                 <c:if test="${ item.getHonor()>2}">
                 	<span style="color:#5FB878">(管理员)</span>
                 </c:if>
-                <c:if test="${ item.getStatus()==0}">
+                <c:if test="${ item.getStatus()== 0}">
                 	<span style="color:#999">（该号已被禁用）</span>
                 </c:if>
                 <!--
@@ -244,6 +247,22 @@
 </div>
 
 <script src='<c:url value="/resources/layui/layui.js"></c:url>'></script>
+<script>
+layui.cache.page="user";
+layui.cache.user = {
+  username: '游客'
+  ,uid: -1
+  ,avatar: '<c:url value="/resources/res/images/avatar/00.jpg"></c:url>'
+  ,experience: 83
+  ,sex: '男'
+};
+layui.config({
+  version: "3.0.0"
+  ,base: '<c:url value="/resources/res/mods/"></c:url>'
+}).extend({
+  fly: '<c:url value="index"></c:url>'
+}).use('<c:url value="fly"></c:url>');
+</script>
 <script>
 layui.use(['upload','layer','form'], function(){
 	  var $ = layui.jquery

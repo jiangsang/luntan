@@ -330,6 +330,7 @@ public class UserController {
 			user.setIntroduce(userinfo.getIntroduce());
 			user.setSex(userinfo.getSex());
 			user.setUserid(userinfo.getUserid());
+			user.setStatus(1);
 			int change_row=this.userService.updateuserinfo(user);
 			if(change_row>0) {
 				session.removeAttribute("user");
@@ -358,6 +359,7 @@ public class UserController {
 			user.setName(username);
 			user.setIntroduce(introduce);
 			user.setSex(sex);
+			user.setStatus(1);
 			user.setUserid(userinfo.getUserid());
 			user.setGradeValue(userinfo.getGradeValue());
 			user.setHonor(userinfo.getHonor());
@@ -386,6 +388,7 @@ public class UserController {
 			User user=new User();
 			user.setUserid(userinfo.getUserid());
 			user.setHonor(userinfo.getHonor());
+			user.setStatus(1);
 			user.setGradeValue(userinfo.getGradeValue());
 			user.setHeadurl(imageurl);
 			int change_row=this.userService.updateuserinfo(user);
@@ -413,6 +416,7 @@ public class UserController {
 		user.setHonor(userinfo.getHonor());
 		user.setGradeValue(userinfo.getGradeValue());
 		user.setHeadurl(headimage);
+		user.setStatus(1);
 		int change_row=this.userService.updateuserinfo(user);
 		if(change_row>0) {
 			List<User> userlist=this.userService.isLogin(userinfo.getPhone());
@@ -424,7 +428,7 @@ public class UserController {
 		else {json.put("msg","头像修改失败！");}
 		return json;
 	}
-	//上传头像图片
+	//上传图片
 	@RequestMapping("/uploadHeadImage")
 	@ResponseBody
 	public JSONObject uploadHeadImage(@RequestParam("file") MultipartFile file, @ModelAttribute User user, HttpServletRequest request, InputStream stream)
@@ -462,6 +466,7 @@ public class UserController {
 		user.setUserid(userinfo.getUserid());
 		user.setHonor(userinfo.getHonor());
 		user.setHeadurl(userinfo.getHeadurl());
+		user.setStatus(1);
 		user.setGradeValue(userinfo.getGradeValue()+signvalue);
 		Date date=new Date();
 		Sign sign=new Sign();

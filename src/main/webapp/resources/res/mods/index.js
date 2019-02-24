@@ -1,6 +1,6 @@
 /**
 
- @Name: Fly社区主入口
+ @Name: 社区主入口
 
  */
  
@@ -20,7 +20,7 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
   
   //阻止IE7以下访问
   if(device.ie && device.ie < 8){
-    layer.alert('如果您非得使用 IE 浏览器访问Fly社区，那么请使用 IE8+');
+    layer.alert('如果您非得使用 IE 浏览器访问纵横国漫社区，那么请使用 IE8+');
   }
   
   layui.focusInsert = function(obj, str){
@@ -156,11 +156,12 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
               //执行上传实例
               upload.render({
                 elem: '#uploadImg'
-                ,url: '/api/upload/'
-                ,size: 20000
+                ,url: '../user/uploadHeadImage/'
+                ,size: 20000//这里设置图片的最大尺寸
                 ,done: function(res){
-                  if(res.status == 0){
-                    image.val(res.url);
+                  if(res.code == 0){
+                	layer.msg(res.msg, {icon: 6});
+                    image.val(res.src);
                   } else {
                     layer.msg(res.msg, {icon: 5});
                   }
@@ -170,7 +171,7 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
               form.on('submit(uploadImages)', function(data){
                 var field = data.field;
                 if(!field.image) return image.focus();
-                layui.focusInsert(editor[0], 'img['+ field.image + '] ');
+                layui.focusInsert(editor[0], '<img src="..'+ field.image + '"> ');
                 layer.close(index);
               });
             }
@@ -191,7 +192,7 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
               layer.tips('这根本不是个链接，不要骗我。', elem, {tips:1})
               return;
             }
-            layui.focusInsert(editor[0], ' a('+ val +')['+ val + '] ');
+            layui.focusInsert(editor[0], '<a href="'+ val +'">'+ val + '</a>');
             layer.close(index);
           });
         }
@@ -204,12 +205,12 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
             ,id: 'LAY_flyedit_code'
             ,area: ['800px', '360px']
           }, function(val, index, elem){
-            layui.focusInsert(editor[0], '[pre]\n'+ val + '\n[/pre]');
+            layui.focusInsert(editor[0], val);
             layer.close(index);
           });
         }
         ,hr: function(editor){ //插入水平分割线
-          layui.focusInsert(editor[0], '[hr]');
+          layui.focusInsert(editor[0], '<hr>');
         }
         ,yulan: function(editor){ //预览
           var content = editor.val();
@@ -224,7 +225,7 @@ layui.define(['layer', 'laytpl', 'form', 'element', 'upload', 'util'], function(
             ,shade: false
             ,area: ['100%', '100%']
             ,scrollbar: false
-            ,content: '<div class="detail-body" style="margin:20px;">'+ content +'</div>'
+            ,content: '<div class="detail-body" style="margin:20px;"><pre>'+ content +'</pre></div>'
           });
         }
       };
