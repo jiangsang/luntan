@@ -56,20 +56,16 @@
 	    <include refid="selectall" /> 
 		where a.userid=b.userid and b.status=2 and b.blockid=#{blockId}
 	</select>
-	<!-- 查找该板块下最近一周热帖 -->
+	<!-- 查找该板块下热帖 -->
 	<select id="selectHotThread" parameterType="int" resultType="guomanwang.domain.UserThread">
-	    select t.*
-		from (
 	    select b.*,a.headurl,a.honor,a.username,a.sex, count(c.id) commitnumber
 			from thread b
 			INNER JOIN user a ON a.userid=b.userid
 			left OUTER JOIN commit c ON c.threadid=b.id
 			where b.time>DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
-			and b.blockid=#{blockId}
+			and b.blockid=#{blockId} and b.status=2
 			GROUP BY b.id
 			order by commitnumber desc
-			) as t 
-		WHERE commitnumber>8
 	</select>
 	<!-- 查找该板块下精贴 -->
 	<select id="selectAnimaThread" parameterType="int" resultType="guomanwang.domain.UserThread">
